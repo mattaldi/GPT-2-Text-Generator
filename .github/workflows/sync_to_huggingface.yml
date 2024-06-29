@@ -29,7 +29,8 @@ jobs:
 
       - name: Copy Project Files
         run: |
-          cp -r ./* GPT-2-Text-Generator/
+          shopt -s extglob
+          cp -r !(GPT-2-Text-Generator|.github) GPT-2-Text-Generator/
 
       - name: Push to Hugging Face
         env:
