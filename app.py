@@ -3,7 +3,7 @@ from transformers import pipeline, set_seed
 
 # Initialize the text generation pipeline
 generator = pipeline('text-generation', model='gpt2')
-set_seed(42)  # for reproducibility
+set_seed(42)  # for reproducibility.
 
 def generate_text(prompt, max_length, temperature):
     # Generate text based on the input prompt
