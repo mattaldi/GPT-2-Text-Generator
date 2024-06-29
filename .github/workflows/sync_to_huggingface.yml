@@ -1,0 +1,35 @@
+name: Sync to Hugging Face Hub
+
+on:
+  push:
+    branches:
+      - main  # or your default branch name
+
+jobs:
+  sync-to-hub:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+      - name: Configure Git
+        run: |
+          git config --global user.email "muhamadaldiansyah24@gmail.com"
+          git config --global user.name "mattaldi"
+      - name: Clone Hugging Face Space
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          git clone https://huggingface.co/spaces/mattaldi/GPT-2-Text-Generator
+      - name: Copy Project Files
+        run: |
+          cp -r * GPT-2-Text-Generator/
+      - name: Push to Hugging Face
+        env:
+          HF_TOKEN: ${{ secrets.HF_TOKEN }}
+        run: |
+          cd GPT-2-Text-Generator
+          git add .
+          git commit -m "Sync from GitHub"
+          git push https://mattaldi:$HF_TOKEN@huggingface.co/spaces/mattaldi/GPT-2-Text-Generator main
