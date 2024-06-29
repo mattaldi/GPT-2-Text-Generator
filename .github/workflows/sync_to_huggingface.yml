@@ -21,7 +21,7 @@ jobs:
         env:
           HF_TOKEN: ${{ secrets.HF_TOKEN }}
         run: |
-          git clone https://huggingface.co/spaces/mattaldi/GPT-2-Text-Generator
+          git clone https://mattaldi:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/mattaldi/GPT-2-Text-Generator
       - name: Copy Project Files
         run: |
           cp -r * GPT-2-Text-Generator/
@@ -32,4 +32,4 @@ jobs:
           cd GPT-2-Text-Generator
           git add .
           git commit -m "Sync from GitHub"
-          git push https://mattaldi:$HF_TOKEN@huggingface.co/spaces/mattaldi/GPT-2-Text-Generator main
+          git push https://mattaldi:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/mattaldi/GPT-2-Text-Generator main
