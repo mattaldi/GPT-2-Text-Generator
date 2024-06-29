@@ -39,4 +39,5 @@ jobs:
           cd GPT-2-Text-Generator
           git add .
           git commit -m "Sync from GitHub"
+          git remote set-url origin https://mattaldi:${{ secrets.HF_TOKEN }}@huggingface.co/spaces/mattaldi/GPT-2-Text-Generator.git
           git push origin main
